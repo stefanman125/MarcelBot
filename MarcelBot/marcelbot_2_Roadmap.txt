@@ -1,0 +1,4 @@
+- updated formatting so that capitals and spaces dont matter
+- new reminder command to remind us about work before it is due
+- adds reactions based on messages
+WhatsDue.AddWork{Title|DueDate|DueTime}
