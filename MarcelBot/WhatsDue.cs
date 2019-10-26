@@ -13,19 +13,16 @@ namespace MarcelBot.Core.Commands
 {
     public class WhatsDue : ModuleBase<SocketCommandContext>
     {
-        ///*
-        [Command("WhatsDue"), Alias("Whats Due", "whats due", "whatsdue"), Summary("Shows the current work that is yet to be due, and reminds you that its due")]
+        [Command("whatsdue"), Alias("whats due", "what is due"), Summary("Shows the current work that is yet to be due, and reminds you that its due")]
         public async Task TaskWhatsDue([Remainder]string remainder = "")
         {
             remainder.ToLower();
+            /*
             //Cast Context user as a SocketGuildUser so that I can reference their roles
             var user = Context.User as SocketGuildUser;
 
             //This will grab persistent values from the file
             List<string> listWork = System.IO.File.ReadLines("WorkList.txt").ToList();
-
-            //This will grab usernames from a file to know who to remind
-            List<Discord.WebSocket.SocketUser> listUsers = new List<Discord.WebSocket.SocketUser>();
 
             //If the user wants to use an argument
             if (user.Roles.Any(r => r.Name == "Robot"))
@@ -33,6 +30,7 @@ namespace MarcelBot.Core.Commands
                 var listRemainder = remainder.Split('(', ')', ',');
                 var lengthListOriginal = listWork.Count();
 
+                //If the user wants to add something to the work list
                 if (listRemainder[0].Contains("addwork"))
                 {
                     listWork.Add(listRemainder[1] + " | " + listRemainder[2] + listRemainder[3] + " at " + listRemainder[4]);
@@ -40,6 +38,7 @@ namespace MarcelBot.Core.Commands
                     await Context.Channel.SendMessageAsync("Work has been successfully added!");
                 }
 
+                //If the user wants to remove work from the list
                 else if (listRemainder[0].Contains("removework"))
                 {
                     //Make sure the user enters a number to remove the work
@@ -62,6 +61,7 @@ namespace MarcelBot.Core.Commands
                     }
                 }
 
+                //If the user wants to edit some work
                 else if (listRemainder[0].Contains("editwork"))
                 {
                     //Make sure the user enters a number to remove the work
@@ -124,6 +124,7 @@ namespace MarcelBot.Core.Commands
                 else { await FuncSendWorkList(); }
             }
 
+            //If a non-robot uses the command, send the work list
             else if (user.Roles.Any(r => r.Name != "Robot")) { await FuncSendWorkList(); }
 
             //Function that sends the list of work if the user using the command is not Robot
@@ -153,12 +154,17 @@ namespace MarcelBot.Core.Commands
                 }
             }
 
-            //Function that sends reminder to all people subscribed
+
+            // Useful code for if I decide to make a remindme function
+            /*This will grab usernames from a file to know who to remind
+            List<Discord.WebSocket.SocketUser> listUsers = new List<Discord.WebSocket.SocketUser>();
+
+            Function that sends reminder to all people subscribed
             async Task FuncSendReminder()
             {
                 var userID = Context.Message.Author;
                 await Discord.UserExtensions.SendMessageAsync(userID, "Yeet");
-            }
-        }//*/
+            }*/
+        }//
     }
 }

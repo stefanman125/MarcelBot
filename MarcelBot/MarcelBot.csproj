@@ -8,10 +8,10 @@
     <Company>Yeet Industries</Company>
     <Description>The computerized consciousness of Marcel Jar</Description>
     <ApplicationIcon />
-    <Version>1.0.8</Version>
-    <PackageReleaseNotes>- Updated Countdown dates</PackageReleaseNotes>
-    <FileVersion>1.0.8.0</FileVersion>
-    <AssemblyVersion>1.0.8.0</AssemblyVersion>
+    <Version>1.0.9</Version>
+    <PackageReleaseNotes>- Updated log properties to reduce log size (does not log heartbeats)</PackageReleaseNotes>
+    <FileVersion>1.0.9.0</FileVersion>
+    <AssemblyVersion>1.0.9.0</AssemblyVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

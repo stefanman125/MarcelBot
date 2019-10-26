@@ -13,7 +13,7 @@ namespace MarcelBot.Core.Commands
     public class ProxyMessage : ModuleBase<SocketCommandContext>
     {
         [Command("ProxyMessage"), Alias("proxy"), Summary("Sends a message in Marcels context rather than the admins."), RequireUserPermission(GuildPermission.Administrator)]
-        public async Task TaskProxyMessage([Remainder] string userInput, ISocketMessageChannel channel)
+        public async Task TaskProxyMessage([Remainder] string userInput)
         {
             await Context.Channel.SendFileAsync(userInput, "Caption goes here");
         }

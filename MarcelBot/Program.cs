@@ -28,6 +28,7 @@ namespace ChrisRobertson
                 CaseSensitiveCommands = false,
                 DefaultRunMode = RunMode.Async,
                 LogLevel = LogSeverity.Debug
+                
             });
 
             Client.MessageReceived += Client_MessageRecieved;
@@ -39,19 +40,16 @@ namespace ChrisRobertson
             //Change this whenever creating new bots -----------------------------------------------------
             //Use Chris Robertson's token when testing: NDMwNDgxNjg5MjUzMzgwMTA2.DvSxWQ.-hb0VUo0oOEAj1lEb5PDplqpJ3Q
             //Marcel's original token: NTIyOTU2OTA3ODEyNDg3MTg5.DvSjUg.tbXjmSSoZWN_XMKvyp8PNn3-xUE
-            string Token = "NDMwNDgxNjg5MjUzMzgwMTA2.DvSxWQ.-hb0VUo0oOEAj1lEb5PDplqpJ3Q";
+            string Token = "NTIyOTU2OTA3ODEyNDg3MTg5.DvSjUg.tbXjmSSoZWN_XMKvyp8PNn3-xUE";
             //Change this whenever creating new bots -----------------------------------------------------
             System.IO.File.AppendAllText(@"log.txt", $"---- NEW INSTANTIATION AT {DateTime.Now} ---- "+Environment.NewLine);
             await Client.LoginAsync(TokenType.Bot, Token);
             await Client.StartAsync();
 
             await Task.Delay(-1);
-
-            //This part of the program checks to see whether work is due by checking the date every now and then
-
         }
 
-        //This creates sort of a baseline of all the logss
+        //This creates sort of a baseline of all the logs
         private async Task Client_Log(LogMessage Message)
         {
             var log = $"{DateTime.Now} at {Message.Source}] {Message.Message}";
@@ -98,7 +96,8 @@ namespace ChrisRobertson
             else if (Result.IsSuccess)
             {
                 var log = $"{DateTime.Now} at Commands] User {Context.User.Username} executed a command: {Context.Message.Content}";
-                Console.WriteLine(log);
+                //Truncates all logs that are related to heartbeats to reduce size
+                if (!log.Contains("Heartbeat")) { Console.WriteLine(log); }
                 System.IO.File.AppendAllText(@"log.txt", log + Environment.NewLine);
             }
         }
