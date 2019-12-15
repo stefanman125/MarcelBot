@@ -13,11 +13,21 @@ namespace MarcelBot.Core.Commands
         public async Task TaskCountdown()
         {
             //The year-month-day of the end date
-            DateTime dateStartOfFallSemester = new System.DateTime(2019, 09, 03);
-            await Context.Channel.SendMessageAsync(GetDaysLeft(dateStartOfFallSemester, "start of the fall semester!"));
 
-            DateTime dateEndOfFallSemester = new System.DateTime(2019, 12, 13);
-            await Context.Channel.SendMessageAsync(GetDaysLeft(dateEndOfFallSemester, "end of the fall semester!"));
+            //Start of the Winter Semester
+            DateTime dateStartOfWinterSemester = new System.DateTime(2020, 1, 6);
+            if (DateTime.Today <= dateStartOfWinterSemester)
+            {
+                await Context.Channel.SendMessageAsync(GetDaysLeft(dateStartOfWinterSemester, "start of the winter semester!"));
+            }
+
+            //End of the Winter Semester
+            DateTime dateEndOfWinterSemester = new System.DateTime(2020, 4, 17);
+            if (DateTime.Today <= dateEndOfWinterSemester && DateTime.Today > dateStartOfWinterSemester)
+            {
+                await Context.Channel.SendMessageAsync(GetDaysLeft(dateEndOfWinterSemester, "end of the winter semester!"));
+            }
+
         }
 
         //Returns a string saying how many days left until whatever date

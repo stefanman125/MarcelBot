@@ -38,9 +38,7 @@ namespace ChrisRobertson
             Client.Log += Client_Log;
 
             //Change this whenever creating new bots -----------------------------------------------------
-            //Use Chris Robertson's token when testing: NDMwNDgxNjg5MjUzMzgwMTA2.DvSxWQ.-hb0VUo0oOEAj1lEb5PDplqpJ3Q
-            //Marcel's original token: NTIyOTU2OTA3ODEyNDg3MTg5.DvSjUg.tbXjmSSoZWN_XMKvyp8PNn3-xUE
-            string Token = "NTIyOTU2OTA3ODEyNDg3MTg5.DvSjUg.tbXjmSSoZWN_XMKvyp8PNn3-xUE";
+            string Token = "";
             //Change this whenever creating new bots -----------------------------------------------------
             System.IO.File.AppendAllText(@"log.txt", $"---- NEW INSTANTIATION AT {DateTime.Now} ---- "+Environment.NewLine);
             await Client.LoginAsync(TokenType.Bot, Token);
